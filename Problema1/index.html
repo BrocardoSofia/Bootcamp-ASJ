@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 1</title>
+</head>
+
+<body>
+    <h1>Rellena tu CV</h1>
+
+    <form action="/php/insertar_cv.php" method="POST">
+        <label for="Name">Nombre</label>
+        <br>
+        <input type="text" id="Name" name="Name" placeholder="Ingrese su nombre" 
+        maxlength="30" size="80">
+
+        <br><br>
+
+        <label for="Lastname">Apellidos</label>
+        <br>
+        <input type="text" id="Lastname" name="Lastname" 
+        placeholder="Ingrese sus apellidos" maxlength="80" size="80">
+
+        <br><br>
+
+        <label for="Password">Contraseña</label>
+        <br>
+        <input type="password" id="Password" name="Password" placeholder="Ingrese su contraseña" maxlength="10">
+
+        <br><br>
+
+        <label for="DNI">DNI</label>
+        <br>
+        <input type="number" id="DNI" placeholder="Ingrese su DNI" name="DNI">
+
+        <br><br>
+
+        <label for="Sexo">Sexo</label>
+        <br>
+        <input type="radio" name="sexo" value="M"> Mujer
+        <br>
+        <input type="radio" name="sexo" value="H"> Hombre
+
+        <br><br>
+
+        <label for="archivo">Incluir mi foto</label>
+        <input id="archivo" type="file" name="archivo">
+
+        <br><br>
+
+        <input type="checkbox" name="subscribirmeNovedades"> Subscribirme al boletin de novedades
+
+        <br><br>
+
+        <button type="submit">Guardar cambios</button>
+
+    </form>
+
+</body>
+
+</html>
