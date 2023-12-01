@@ -53,9 +53,28 @@ function dineroVacaciones()
     alert("Podés gastar $"+gastoMaxPorComida.toFixed(2)+" en cada comida para que te alcance la plata durante los "+diasViaje+" días de viaje");
 }
 
+function ejercicio1ES6()
+{
+    let nombre = "Gabriela"
+    let profesion = "programadora"
+
+    return `${nombre} es ${profesion}`;
+}
+
+function ejercicio2ES6()
+{
+    let precioArticulo = parseFloat(prompt("Ingrese el precio del articulo: "));
+    let cantidad = parseInt(prompt("Ingrese la cantidad: "));
+    let precioFinal = precioArticulo*cantidad;
+
+    return `El valor a pagar por ${cantidad} articulos de $${precioArticulo}c/u es: $${precioFinal.toFixed(2)}`
+}
+
 //mensajeAlert();
 //console.log(cantidadDeCaracteres());
 //console.log(calculadoraDeEdad());
 //console.log(sumaDeValores());
 //console.log(calculadorAbastecimientoDePorVida());
-dineroVacaciones();
+//dineroVacaciones();
+//console.log(ejercicio1ES6());
+console.log(ejercicio2ES6());
