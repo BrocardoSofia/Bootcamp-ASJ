@@ -85,23 +85,23 @@ do {
         switch(contadorChiste)
         {
             case 0:
-                alert("¿Qué le dice una barra de pan a otra? Te presento a una miga.?\n(≧︿≦)");
+                alert("¿Qué le dice una barra de pan a otra? Te presento a una miga.?\n\n※\\(^o^)/※");
                 contadorChiste++;
                 break;
             case 1:
-                alert("¿Sabes que el aguacate es 50% agua? \nSí, lo sé. Y el otro 50% cate.\n(≧︿≦)");
+                alert("¿Sabes que el aguacate es 50% agua? \nSí, lo sé. Y el otro 50% cate.\n\n※\\(^o^)/※");
                 contadorChiste++;
                 break;
             case 2:
-                alert("¿Qué le dice un limón policía a un limón sospechoso de un crimen?\n¿Ácido tú?\n(≧︿≦)");
+                alert("¿Qué le dice un limón policía a un limón sospechoso de un crimen?\n¿Ácido tú?\n\n※\\(^o^)/※");
                 contadorChiste++;
                 break;
             case 3:
-                alert("¿Cuál es la fruta más explosiva y peligrosa? ¡La granada!\n(≧︿≦)");
+                alert("¿Cuál es la fruta más explosiva y peligrosa? ¡La granada!\n\n※\\(^o^)/※");
                 contadorChiste++;
                 break;
             case 4:
-                alert("¿Qué le dice un pollito a otro pollo al que odia?\n¡Caldito seas!\n(≧︿≦)");
+                alert("¿Qué le dice un pollito a otro pollo al que odia?\n¡Caldito seas!\n\n※\\(^o^)/※");
                 contadorChiste++;
                 break;
             case 5:
