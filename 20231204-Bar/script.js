@@ -148,7 +148,14 @@ do {
 } while (propina != "s" && propina != "n");
 
 if (propina == "s") {
-  propinaPagar = parseFloat(prompt("Ingrese el monto para la propina:"));
+  do{
+    propinaPagar = parseFloat(prompt("Ingrese el monto para la propina:"));
+
+    if(propinaPagar<=0)
+    {
+        alert("La propina no puede ser negativa!!");
+    }
+  }while(propinaPagar<=0);
 }
 
 //muestro la factura final:
