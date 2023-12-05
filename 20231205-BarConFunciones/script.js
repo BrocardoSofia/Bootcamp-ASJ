@@ -9,6 +9,10 @@ saludar a ingresar y al salir
 Modularizada
 */
 
+//necesito que este afuera para no devolver un objero en la funcion pedir comida
+let factura = "FACTURA\n";
+let cuenta = 0;
+
 function saludoMesero(saludo, mesero) {
   alert("Buen dia! (ʘ‿ʘ)╯");
   if (saludo === 0) {
@@ -135,14 +139,55 @@ function facturaFinal(factura, propinaPagar, cuenta)
   );
 }
 
+function pedirComida(){
+  let comida;
+  let mensajePedirComida = "Que lo disfrute!!";
+  
+  do {
+    comida = parseInt(
+      prompt(
+        `Selecciones una de las comidas del menu: \n
+        \n1. Cerveza  \n2. Papas \n3. Pizza  \n4. Rabas \n5. Salir`
+      )
+    );
+    switch (comida) {
+      case 1:
+        factura += "\nCerveza ....... $1500"; //agrego la comida a la factura
+        cuenta += 1500; //sumo a la cuenta final
+        break;
+
+      case 2:
+        factura += "\nPapas ........... $5000"; //agrego la comida a la factura
+        cuenta += 5000; //sumo a la cuenta final
+        break;
+
+      case 3:
+        factura += "\nPizza ............. $3400"; //agrego la comida a la factura
+        cuenta += 3400; //sumo a la cuenta final
+        break;
+
+      case 4:
+        factura += "\nRabas ........... $4000"; //agrego la comida a la factura
+        cuenta += 4000; //sumo a la cuenta final
+        break;
+
+      case 5:
+        if ( comida === 1 || comida === 2 || comida === 3 || comida === 4) {
+          alert(mensajePedirComida);
+        }
+        break;
+
+      default:
+        alert("Opcion no valida!");
+        break;
+    }
+  } while (comida != 5);
+}
+
 function bar() {
   let opcion = 0;
   let saludo = 0;
   let mesero = "Mesero";
-  let comida;
-  let factura = "FACTURA\n";
-  let cuenta = 0;
-  let mensajePedirComida = "Que lo disfrute!!";
   let contadorChiste = 0;
 
   //entra el cliente al bar
@@ -162,49 +207,7 @@ function bar() {
 
       case 3:
         //muestro las opciones
-        //esta parte no la pude modularizar porque todavia no vimos objetos
-        //pero se podria hacer una funcion que retorne un objeto para retornar 
-        //la factura y la cuenta
-        do {
-          comida = parseInt(
-            prompt(
-              `Selecciones una de las comidas del menu: \n
-              \n1. Cerveza  \n2. Papas \n3. Pizza  \n4. Rabas \n5. Salir`
-            )
-          );
-          switch (comida) {
-            case 1:
-              factura += "\nCerveza ....... $1500"; //agrego la comida a la factura
-              cuenta += 1500; //sumo a la cuenta final
-              break;
-
-            case 2:
-              factura += "\nPapas ........... $5000"; //agrego la comida a la factura
-              cuenta += 5000; //sumo a la cuenta final
-              break;
-
-            case 3:
-              factura += "\nPizza ............. $3400"; //agrego la comida a la factura
-              cuenta += 3400; //sumo a la cuenta final
-              break;
-
-            case 4:
-              factura += "\nRabas ........... $4000"; //agrego la comida a la factura
-              cuenta += 4000; //sumo a la cuenta final
-              break;
-
-            case 5:
-              if ( comida === 1 || comida === 2 || comida === 3 || comida === 4) {
-                alert(mensajePedirComida);
-              }
-              break;
-
-            default:
-              alert("Opcion no valida!");
-              break;
-          }
-        } while (comida != 5);
-
+        pedirComida();
         break;
 
       case 4:
