@@ -162,6 +162,9 @@ function bar() {
 
       case 3:
         //muestro las opciones
+        //esta parte no la pude modularizar porque todavia no vimos objetos
+        //pero se podria hacer una funcion que retorne un objeto para retornar 
+        //la factura y la cuenta
         do {
           comida = parseInt(
             prompt(
@@ -191,12 +194,7 @@ function bar() {
               break;
 
             case 5:
-              if (
-                comida === 1 ||
-                comida === 2 ||
-                comida === 3 ||
-                comida === 4
-              ) {
+              if ( comida === 1 || comida === 2 || comida === 3 || comida === 4) {
                 alert(mensajePedirComida);
               }
               break;
