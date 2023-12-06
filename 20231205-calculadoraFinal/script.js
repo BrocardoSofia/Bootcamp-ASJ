@@ -59,7 +59,6 @@ function agregarOperador(tecla)
             {
                 insertarTecla = document.createTextNode(calculo);
                 operacion = "";
-                pantallaDefault = true;
             }
             else
             {
