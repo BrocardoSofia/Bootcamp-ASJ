@@ -20,6 +20,8 @@ function crear_evento_carrito(btn) {
     btn.addEventListener("click", function() {
         agregarItemALocalStorage(btn.value);
         //informo al usuario que se agrego el item al carrito
+        //btn.value.split("/")[0]
+        //nombre/cantidad
         alert("Se agrego un " + btn.value.substring(0, btn.value.length - 2) + " al carrito!");
     });    
 }
@@ -29,6 +31,7 @@ function agregarItemALocalStorage(item)
     //agrego un item al localStorage
     let productos = window.localStorage.getItem("items");
     
+    // nombre/cantidad,
     if(productos === "0")
     {
         productos = item;
