@@ -1,6 +1,8 @@
 let btnCarrito = document.getElementById("btnComprar");//obtengo el boton para comprar
 let totalCompra = 0;
 
+let btnItem = document.getElementById("addItemToCart");
+
 btnCarrito.addEventListener("click", function() {
     //busco el total de la compra
     window.localStorage.clear();
@@ -19,13 +21,6 @@ btnCarrito.addEventListener("click", function() {
     //lo redirijo a la pagina para seguir comprando
     location.href = "index.html";
 });
-
-//agregar item con cantidad
-function agregarItemCarrito(){
-    let cantidad = document.getElementById("addCantItem").value;
-    let item = document.getElementById("addItemToCart").value;
-    console.log(cantidad + " " + item);
-}
 
 //cada vez que se abre se debe actualizar
 function actualizarCarrito()
@@ -47,6 +42,12 @@ function actualizarCarrito()
         }
 
         agregarPrecioTotal();
+    }
+    else
+    {
+        //si no hay items deshabilito el boton para comprar
+        let boton = document.getElementById("btnComprar");
+        boton.disabled = true; 
     }
     
 }
@@ -221,6 +222,20 @@ function agregarItemAtabla(item)
     tabla.appendChild(row);
 }
 
+function eliminarItem()
+{
+    //eliminar fila
+
+    //leer todos los items de la tabla y guardarlos en un string
+    //como "nombreItem/cantidad, nombreItem/cantidad, ..."
+
+    //clear() LocalStorage
+
+    //insertar nuevos items en LocalStorage
+
+    //volver a cargar la pagina carrito
+}
+
 function obtenerDirImagen(nombreItem)
 {
     let dir = "";
@@ -310,6 +325,7 @@ function obtenerPrecio(nombreItem)
 
     return precio;
 }
+
 
 
 actualizarCarrito();
