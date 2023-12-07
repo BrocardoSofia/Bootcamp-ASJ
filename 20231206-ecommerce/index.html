@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <header class="barra-arriba-nav">
+        <h1 id="nombre-boutique" class="color-nav">
+            BOUTIQUE
+        </h1>
+        <nav class="barra-navegacion">
+            <ul>
+                <li><a class="link-nav color-nav" href="#">
+                        HOME</a></li>
+                <li class="pagina-actual">SHOP</li>
+                <li><a class="link-nav color-nav" href="#">
+                        DEMOS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        BLOCKS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        COMPONENTS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        CONTACT US</a></li>
+                <li><a class="link-nav color-nav" href="carrito.html">
+                        MY CART</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="navegacion-shop">
+            <section class="busquedas-shop">
+                <form class="form-buscar" action="funcionBuscar()">
+                    <input class="input-buscar" type="text" placeholder="Search...">
+                    <button class="boton-buscar" type="submit">
+                        <img class="imagen-boton" src="./assets/lupa.png">
+                    </button>
+                </form>
+
+                <form action="funcionBuscarPrecios()">
+                    <select class="input-buscar-precios" name="buscar-precios">
+                        <option value="" selected disabled>PUBLIC PRICELIST</option>
+                        <option value="menos500">Menos de $500</option>
+                        <option value="menos1000">Menos de $1000</option>
+                        <option value="menos2000">Menos de $2000</option>
+                        <option value="todos">Todos los precios</option>
+                    </select>
+                </form>
+            </section>
+
+            <section class="paginas-nav">
+                <section class="botones-nav">
+                    <button class="boton-izq" disabled>Prev</button>
+                    <button class="botones-medio-actual">1</button>
+                    <button class="boton-nav-paginas botones-medio">2</button>
+                    <button class="boton-nav-paginas botones-medio">3</button>
+                    <button class="boton-nav-paginas botones-medio">4</button>
+                    <button class="boton-nav-paginas boton-der">Next</button>
+                </section>
+            </section>
+        </section>
+
+        <section class="articulos-section">
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Giant-Chunky-Knit-Scarf/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/yellow-scarf.jpg" alt="yellow scarf">
+                    </section>    
+                </div>
+                <a class="articulo-link" href="item1.html">Giant Chunky Knit Scarf - Yellow</a>
+                <p class="articulo-precio">$120.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Kurthy-cat-eye-sunglasses/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/white-sunglasses.jpg" alt="sunglasses white">
+                    </section>                     
+                </div>
+                <a class="articulo-link" href="#">Kurthy cat eye sunglasses - White</a>
+                <p class="articulo-precio">$49.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Wooden-Airplane/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/wooden-airplane.jpg" alt="wooden airplane">
+                    </section> 
+                </div>
+                <a class="articulo-link" href="#">Wooden Airplane</a>
+                <p class="articulo-precio">$49.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Mirabelle-handbag/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/handbag.png" alt="handbag">
+                    </section> 
+                </div>
+                <a class="articulo-link" href="#">Sand Mirabelle Structured Handbag</a>
+                <p class="articulo-precio">$90.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Remera-Stitch/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/remera-stich.jpg" alt="remera mujer">
+                    </section>  
+                </div>
+                <a class="articulo-link" href="#">Remera Stitch</a>
+                <p class="articulo-precio">$95.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Campera-De-Algodon/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/campera-celeste.jpg" alt="Campera De Algodon">
+                    </section>  
+                </div>
+                <a class="articulo-link" href="#">Campera De Algodon</a>
+                <p class="articulo-precio">$45.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Esmalte-Orange/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/Esmalte-orange.jpg" alt="yellow scarf">
+                    </section>  
+                </div>
+                <a class="articulo-link" href="#">Esmalte - Orange</a>
+                <p class="articulo-precio">$10.00</p>
+            </div>
+
+            <div class="articulo">
+                <div class="imagen-boton-section">
+                    <button class="boton-carrito" value="Zapatillas-White-and-Red/1">
+                        <img class="imagen-boton" src="./assets/carrito.png">
+                    </button>
+                    <section class="imagen-section">
+                        <img class="articulo-img" src="./assets/items-tienda/zapatillas-rojas.png" alt="yellow scarf">
+                    </section>  
+                </div>
+                <a class="articulo-link" href="#">Zapatillas - White and Red</a>
+                <p class="articulo-precio">$130.00</p>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

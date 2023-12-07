@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style-item.css">
+</head>
+<body>
+    <header class="barra-arriba-nav">
+        <h1 id="nombre-myshop" class="color-nav">
+            myshop
+        </h1>
+        <nav class="barra-navegacion">
+            <ul>
+                <li><a class="link-nav color-nav" href="#">
+                        HOME</a></li>
+                <li><a class="link-nav color-nav" href="index.html">
+                        SHOP</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        DEMOS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        BLOCKS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        COMPONENTS</a></li>
+                <li><a class="link-nav color-nav" href="#">
+                        CONTACT US</a></li>
+                <li><a class="link-nav color-nav" href="carrito.html">
+                        MY CART</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="navegacion-shop">
+            <section class="info-pagina">
+                <p class="productos-text-title">PRODUCTS</p>
+                <img class="flecha" src="assets/arrow.png" alt="->">
+                <p class="titulo-item-pagina">Giant Chunky Knit Scarf - Yellow</p>
+            </section>
+
+            <form class="form-buscar" action="funcionBuscar()">
+                <input class="input-buscar width40vh" type="text" placeholder="Search...">
+                <button class="boton-buscar" type="submit">
+                    <img class="imagen-boton" src="./assets/lupa.png">
+                </button>
+            </form>
+
+            <form action="funcionBuscarPrecios()">
+                <select class="input-buscar-precios width15vh" name="buscar-precios">
+                    <option value="" selected disabled>PRICELIST</option>
+                    <option value="menos500">Menos de $500</option>
+                    <option value="menos1000">Menos de $1000</option>
+                    <option value="menos2000">Menos de $2000</option>
+                    <option value="todos">Todos los precios</option>
+                </select>
+            </form>
+
+        </section>
+
+        <section class="articulo-seleccionado">
+            <img class="imagen-detalle" src="./assets/items-tienda/yellow-scarf.jpg" alt="yellow-scarf">
+            <article class="detalles-item">
+                <p class="titulo-articulo">Giant Chunky Knit Scarf - Yellow</p>
+                <p class="precio-articulo">$120.00</p>
+                <form class="comprar-form">
+                    <input id="addCantItem" class="form-items border-light-grey" type="number" name="cantidad">
+                    <button onclick="agregarItemCarrito()" id="addItemToCart" value="Giant-Chunky-Knit-Scarf" class="form-items button-add-cart">ADD TO CART</button>
+                </form>
+                <hr class="separador">
+                <p class="descripcion-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum a rerum, iure ut exercitationem itaque, error saepe id, molestias pariatur sit nihil dignissimos cum. Esse consequuntur reiciendis commodi impedit architecto!</p>
+                <hr class="separador">
+                <p class="descripcion-item">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque dolorem eaque ducimus! Minus saepe, hic ducimus consectetur nesciunt unde, recusandae quas inventore quos iste tempora, officiis repudiandae temporibus sequi et?</p>
+            </article>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="scriptCarrito.js"></script>
+</body>
+</html>
