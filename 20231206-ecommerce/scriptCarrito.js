@@ -109,7 +109,7 @@ function cargarItem(item, numRow)
     }
     else
     {
-        //si no existe lo cargo
+        //si existe lo cargo
         console.log("existe");
         modificarItemCant(itemNombre.replaceAll('-', ' '), cantidad);
     }    
