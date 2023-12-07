@@ -38,7 +38,7 @@ function actualizarCarrito()
         for(let i=0; i<arregloItems.length; i++)
         {
             //a cada elemento lo agrego a la tabla
-            cargarItem(arregloItems[i]);
+            cargarItem(arregloItems[i], i);
         }
 
         agregarPrecioTotal();
@@ -92,7 +92,7 @@ function cargarFootCarrito(total)
     foot.appendChild(row);
 }
 
-function cargarItem(item)
+function cargarItem(item, numRow)
 {
     //obtengo el nombre y la cantidad
     let itemNombCant = item.split("/");
@@ -105,7 +105,7 @@ function cargarItem(item)
     //si existe modifico la cantidad de ese item
     if(!existe)
     {
-        agregarItemAtabla(item);
+        agregarItemAtabla(item, numRow);
     }
     else
     {
@@ -166,7 +166,7 @@ function existeItemTabla(itemNombre)
     return existe;
 }
 
-function agregarItemAtabla(item)
+function agregarItemAtabla(item, numRow)
 {
     //obtengo la tabla
     let tabla = document.getElementById("tablaCarrito");
@@ -184,6 +184,10 @@ function agregarItemAtabla(item)
     let botonEliminar = document.createElement("button");
     botonEliminar.className = "btn btn-danger btn-sm";
     botonEliminar.innerHTML = "Eliminar";
+    botonEliminar.value = numRow;
+    botonEliminar.addEventListener("click", function() {
+        eliminarItem(numRow);
+    });
     itemBotonEliminar.appendChild(botonEliminar);
 
     //obtengo el nombre del item y los guardo en sus td
@@ -222,18 +226,52 @@ function agregarItemAtabla(item)
     tabla.appendChild(row);
 }
 
-function eliminarItem()
+function eliminarItem(numRow)
 {
     //eliminar fila
+    document.getElementById("tablaCarrito").deleteRow(numRow);
+
+    //clear() LocalStorage
+    window.localStorage.setItem("items", "0");
 
     //leer todos los items de la tabla y guardarlos en un string
     //como "nombreItem/cantidad, nombreItem/cantidad, ..."
-
-    //clear() LocalStorage
-
-    //insertar nuevos items en LocalStorage
+    itemsTablaALS();
 
     //volver a cargar la pagina carrito
+    location.href = "carrito.html"; 
+}
+
+function itemsTablaALS()
+{
+    let itemLS = "";
+
+    let tabla = document.getElementById("tablaCarrito");    
+
+    for( let i=0; i<tabla.rows.length; i++)
+    {
+        let item = tabla.rows[i].cells[1].innerHTML.replaceAll(" ","-");
+        let cantidad = tabla.rows[i].cells[2].innerHTML;
+        itemLS=(item+"/"+cantidad);
+        agregarItemALocalStorage(itemLS);
+    }
+}
+
+function agregarItemALocalStorage(item)
+{
+    //agrego un item al localStorage
+    let productos = window.localStorage.getItem("items");
+    
+    if(productos === "0")
+    {
+        productos = item;
+    }
+    else
+    {
+        productos += ","+item;
+    }
+
+    window.localStorage.setItem("items", productos);//guardo los items en el localStorage
 }
 
 function obtenerDirImagen(nombreItem)
