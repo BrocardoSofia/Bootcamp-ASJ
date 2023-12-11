@@ -4,16 +4,18 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
     </head>
-    <body id="fondo">
-        <h1 id = "h1"> The Great <br> <span id="colorDisplay"></span> <br> Guessing Game <br>
-        </h1>
+    <body id="fondo" style="background-color: #232323;">
+        <section id="tituloDisplay">
+            <h1> The Great <br> <span id="colorDisplay"></span> <br> Guessing Game <br>
+            </h1>
+        </section>
         <div id="stripe">
             <button id="reset" onclick="nuevosColores()">Nuevos Colores</button>
             <span id="message"></span>
             <button onclick="mostrarModoHard()" class="selected" id="hard">HARD</button>
             <button onclick="mostrarModoEasy()" id="easy">EASY</button>
         </div>
-        <div id="fondoSquare" class="container" style="margin: 0 auto; background-color: #232323;"> 
+        <div id="fondoSquare" class="container" style="margin: 0 auto;"> 
             <div class="square squareEasy"></div>
             <div class="square squareEasy"></div>
             <div class="square squareEasy"></div>

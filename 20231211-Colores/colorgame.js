@@ -61,7 +61,10 @@ function nuevosColores() {
   }
 
   let botonNewColors = document.getElementById("reset");
-    botonNewColors.innerHTML = "NEW COLORS";
+  botonNewColors.innerHTML = "NEW COLORS";
+
+  let sectionTitulo = document.getElementById("tituloDisplay");
+  sectionTitulo.style.backgroundColor = "#232323";
 
   pintarCuadradosRandom(nombreClase);
 }
@@ -105,6 +108,9 @@ function gameOver(color){
     //CAMBIAR NOMBRE DE "NEW COLORS" A "PLAY AGAIN"
     let botonNewColors = document.getElementById("reset");
     botonNewColors.innerHTML = "PLAY AGAIN";
+
+    let sectionTitulo = document.getElementById("tituloDisplay");
+    sectionTitulo.style.backgroundColor = color;
 }
 
 function pintarCuadradosGanador(nombreClase, color){
