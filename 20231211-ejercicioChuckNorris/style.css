@@ -1,0 +1,18 @@
+button{
+    width: 10em;
+    align-self: center;
+    border-radius: 1em;
+}
+
+.container{
+    background-color: rgb(240, 255, 250);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+h2{
+    border: 0.005em black;
+    border-style: dotted;
+}
