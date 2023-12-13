@@ -1,0 +1,15 @@
+.mainPage{
+    display: flex;
+    flex-direction: row;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+aside{
+    position: sticky;
+    left: 0;
+}
