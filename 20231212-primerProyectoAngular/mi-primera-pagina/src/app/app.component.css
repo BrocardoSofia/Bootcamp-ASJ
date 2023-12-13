@@ -2,3 +2,9 @@ main{
     display: flex;
     flex-direction: row;
 }
+
+#navBarSection{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
