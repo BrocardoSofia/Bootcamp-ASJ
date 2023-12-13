@@ -1,0 +1,7 @@
+#charactersSection{
+    background-color: rgb(246, 234, 218);
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

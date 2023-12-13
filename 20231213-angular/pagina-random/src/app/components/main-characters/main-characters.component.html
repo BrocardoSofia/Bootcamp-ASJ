@@ -1,0 +1,9 @@
+<section id="charactersSection">
+    <div *ngFor="let character of characters" class="card m-5 text-center" style="width: 18rem">
+        <h5 class="card-title">{{character.name}}</h5>
+        <img src="{{ character.imgSrc }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text">{{ character.description }}</p>
+        </div>
+      </div>
+</section>

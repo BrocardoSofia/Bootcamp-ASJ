@@ -1,0 +1,10 @@
+#navBarSection{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#infoSerieSection{
+    display: flex;
+    flex-direction: row;
+}

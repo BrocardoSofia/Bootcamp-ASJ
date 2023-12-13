@@ -1,0 +1,9 @@
+<section id="placesSection">
+    <div *ngFor="let place of places" class="card m-5 text-center" style="width: 18rem">
+        <h5 class="card-title">{{place.name}}</h5>
+        <img src="{{ place.imgSrc }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text">{{ place.description }}</p>
+        </div>
+      </div>
+</section>
