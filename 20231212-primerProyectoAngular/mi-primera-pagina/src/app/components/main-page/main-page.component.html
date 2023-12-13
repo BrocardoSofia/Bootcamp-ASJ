@@ -1,0 +1,8 @@
+<section class="mainSection">
+    <div *ngFor="let dog of dogs" class="card m-5" style="width: 18rem;">
+        <img src={{dog.imgSrc}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">{{dog.description}}</p>
+        </div>
+      </div>
+</section>
