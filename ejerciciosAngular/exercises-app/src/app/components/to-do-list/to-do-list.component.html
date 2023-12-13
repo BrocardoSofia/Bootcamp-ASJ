@@ -1,1 +1,19 @@
-<p>to-do-list works!</p>
+<section class="toDoListSection">
+    <h1 class="mt-2">To-do List</h1>
+    <form class="row g-3 mt-3">
+        <div class="col-auto">
+            <input id="inputTask" class="form-control" type="text" placeholder="Ingrese aqui su tarea" aria-label="readonly input example"  [(ngModel)]="task" name="taskInput">
+        </div>
+        <div class="col-auto">
+          <button (click)="addTask()" class="btn btn-primary mb-3">Agregar tarea</button>
+        </div>
+    </form>
+
+    <ul class="list-group mt-5">
+        <!-- aqui agrego la lista de tareas -->
+        <li *ngFor="let task of taskList; index as i" class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="(task.selected)?'list-group-item-dark':'list-group-item-light'" (click)="removeTask(i)">
+            <span [ngClass]="(task.selected)?'text-decoration-line-through':'text-decoration-none'">{{task.taskName}}</span>
+            <span class="badge rounded-pill" [ngClass]="(task.selected)?'bg-secondary':'bg-primary'">{{task.date | date}}</span>
+        </li>
+    </ul>
+</section>

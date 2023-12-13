@@ -1,4 +1,6 @@
 .aside{
     width: 20vw;
     height: 92.5vh;
+    position: sticky;
+    top: 7vh;
 }

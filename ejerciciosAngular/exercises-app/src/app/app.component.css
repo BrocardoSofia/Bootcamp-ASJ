@@ -13,3 +13,7 @@ aside{
     position: sticky;
     left: 0;
 }
+
+#mainPageArticle{
+    position: relative;
+}
