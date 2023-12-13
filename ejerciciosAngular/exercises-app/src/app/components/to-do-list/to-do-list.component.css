@@ -18,11 +18,16 @@ h1{
     width: 60vw;
 }
 
-li{
+#liTask{
     align-self: center;
     width: 69vw;
 }
 
 li:hover{
     cursor: pointer;
+}
+
+#filterTask{
+    margin-left: 5.5vw;
+    align-self: flex-start;
 }

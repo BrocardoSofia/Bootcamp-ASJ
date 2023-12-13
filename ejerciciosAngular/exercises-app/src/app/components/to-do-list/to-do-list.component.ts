@@ -18,8 +18,12 @@ export class ToDoListComponent {
     }
   }
 
-  removeTask(index: number){
+  markTask(index: number){
     this.taskList[index].selected=true;
+  }
+
+  deleteTask(index: number){
+    this.taskList[index].deleted=true;
   }
 }
 
@@ -27,11 +31,13 @@ class Task{
 	taskName: string;
 	date: Date;
 	selected: boolean;
+  deleted: boolean;
 
   constructor(taskName: string, date: Date)
   {
     this.taskName = taskName;
     this.date = date;
     this.selected = false;
+    this.deleted = false;
   }
 }
