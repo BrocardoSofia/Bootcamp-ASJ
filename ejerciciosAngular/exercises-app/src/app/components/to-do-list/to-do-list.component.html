@@ -14,23 +14,28 @@
         Filtrar tareas
       </a>
     
-      <ul class="dropdown-menu">
-        <li class="a ms-2">Todas las tareas</li>
-        <li class="a ms-2">Tareas Completas</li>
-        <li class="a ms-2">Tareas Incompletas</li>
-        <li class="a ms-2">Tareas Eliminadas</li>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li class="dropdown-item itemOption" (click)="changeSeeTaskType(1)">Todas las tareas</li>
+        <li class="dropdown-item itemOption" (click)="changeSeeTaskType(2)">Tareas Completas</li>
+        <li class="dropdown-item itemOption" (click)="changeSeeTaskType(3)">Tareas Incompletas</li>
+        <li class="dropdown-item itemOption" (click)="changeSeeTaskType(4)">Tareas Eliminadas</li>
       </ul>
     </div>
 
     <ul class="list-group mt-5">
         <!-- aqui agrego la lista de tareas -->
-        <li id="liTask" *ngFor="let task of taskList; index as i" class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="(task.selected)?'list-group-item-dark':'list-group-item-light'" (click)="markTask(i)">
-            <span [ngClass]="(task.selected)?'text-decoration-line-through':'text-decoration-none'">{{task.taskName}}</span>
+        <div id="liTask" *ngFor="let task of taskList; index as i">
+          <li *ngIf="showTask(task)" class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="(task.deleted)?'list-group-item-danger':(task.selected)?'list-group-item-dark':'list-group-item-light'">
+            <span class="d-flex justify-content-between align-items-center">
+              <input *ngIf="!task.deleted" type="checkbox" class="form-check-input m-2" (click)="markTask(i)">
+              <span class="m-2" [ngClass]="(task.selected)?'text-decoration-line-through':'text-decoration-none'">{{task.taskName}}</span>
+            </span>
             
-            <span class="badge badge-pill me-4" [ngClass]="(task.selected)?'bg-secondary':'bg-primary'">{{task.date | date}}</span>
-
-            <button class="btn btn-danger btn-sm" type="button" (click)="deleteTask(i)">Borrar</button>
-            
+            <span class="d-flex justify-content-between align-items-center">
+              <span class="p m-2">{{task.date | date}}</span>
+              <button *ngIf="!task.deleted" class="btn btn-danger btn-sm" type="button" (click)="deleteTask(i)">Borrar</button>
+            </span>            
         </li>
+        </div>
     </ul>
 </section>

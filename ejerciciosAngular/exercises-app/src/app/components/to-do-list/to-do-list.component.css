@@ -23,11 +23,11 @@ h1{
     width: 69vw;
 }
 
-li:hover{
-    cursor: pointer;
-}
-
 #filterTask{
     margin-left: 5.5vw;
     align-self: flex-start;
+}
+
+.itemOption:hover{
+    cursor: pointer;
 }

@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class ToDoListComponent {
   task: string = "";
   taskList: Task[] = [];
+  seeTaskType: number = 1;
 
   addTask(){
     if(this.task !== "")
@@ -19,12 +20,38 @@ export class ToDoListComponent {
   }
 
   markTask(index: number){
-    this.taskList[index].selected=true;
+    this.taskList[index].selected = (this.taskList[index].selected)?false:true;
   }
 
   deleteTask(index: number){
     this.taskList[index].deleted=true;
   }
+
+  changeSeeTaskType(option: number){
+    this.seeTaskType = option;
+  }
+
+  showTask(task: Task){
+    let show = true;
+
+    switch(this.seeTaskType)
+    {
+      case 2:
+        show = (task.selected);
+        break;
+
+      case 3:
+        show = (!task.selected && !task.deleted);
+        break;
+
+      case 4:
+        show = (task.deleted);
+        break;
+    }
+
+    return show;
+  }
+
 }
 
 class Task{
