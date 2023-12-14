@@ -1,6 +1,8 @@
 .mainPage{
     display: flex;
     flex-direction: row;
+    margin: 0;
+    padding: 0;
 }
 
 header{
@@ -12,8 +14,16 @@ header{
 aside{
     position: sticky;
     left: 0;
+    margin: 0;
 }
 
 #mainPageArticle{
     position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    margin: 0;
+    padding: 0;
 }

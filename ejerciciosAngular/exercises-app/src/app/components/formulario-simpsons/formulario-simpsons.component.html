@@ -1,0 +1,36 @@
+<section class="row m-0 ">
+    <div class="col-md-5 m-0">
+        <h2 class="ms-2 mt-3">Formulario Los Simpsons</h2>
+        <label class="ms-3 mt-4 " for="inputName">Nombre</label>
+        <input id="inputName" type="text" class="form-control m-3 me-3" placeholder="Ingrese el nombre" #nameInput>
+
+        <label class="ms-3 mt-4 " for="inputSrc">Link a imagen</label>
+        <input id="inputSrc" type="text" class="form-control m-3 me-3" placeholder="Ingrese el link a la imagen" #imgSrcInput>
+
+        <label class="ms-3 mt-4 " for="inputRol">Rol</label>
+        <input id="inputRol" type="text" class="form-control m-3 me-3" placeholder="Ingrese el rol del perdonaje" #rolInput>
+
+        <button type="button" class="btn btn-secondary ms-3 mt-3" (click)="loadCharacter(nameInput, imgSrcInput, rolInput)">
+            Cargar personaje
+        </button>
+    </div>
+    <div class="col-md-7 m-0 ps-5 pe-5">
+        <h2 class="ms-2 mt-3">Lista de personajes</h2>
+        <table class="table mt-5">
+            <thead>
+              <tr>
+                <th class="tdImg" scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let character of characterArray">
+                <td class="tdImg"><img src="{{character.imgSrc}}" alt="imagen del personaje"></td>
+                <td>{{character.name}}</td>
+                <td>{{character.rol}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
