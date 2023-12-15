@@ -8,7 +8,8 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a routerLink="/toDoList" class="nav-link active d-flex align-items-center">
+        <a routerLink="/toDoList" class="nav-link d-flex align-items-center"
+        [ngClass]="(selectedPath('/toDoList')?'active':'text-white')">
           <span class="material-symbols-outlined me-2">
             event_list
           </span>
@@ -19,7 +20,8 @@
       </li>
 
       <li class="nav-item">
-        <a routerLink="/fomrularioLosSimpsons" class="nav-link d-flex align-items-center text-white">
+        <a routerLink="/formularioLosSimpsons" class="nav-link d-flex align-items-center text-white"
+        [ngClass]="(selectedPath('/formularioLosSimpsons')?'active':'text-white')">
           <span class="material-symbols-outlined me-2">
             view_list
           </span>
