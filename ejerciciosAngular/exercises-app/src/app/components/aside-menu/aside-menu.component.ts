@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
 @Component({
@@ -6,14 +6,12 @@ import { Router } from '@angular/router'
   templateUrl: './aside-menu.component.html',
   styleUrl: './aside-menu.component.css'
 })
-export class AsideMenuComponent {
+export class AsideMenuComponent{
 
   constructor(private router: Router ) { }
   
-  selectedPath(buttonPath: string){
-    let currentPath:string = this.router.url;
-    let selected = (buttonPath === this.router.url)?true:false
-    return selected;
+  selectedPath(buttonPath: string):boolean{
+    return buttonPath === this.router.url;
   }
   
 }

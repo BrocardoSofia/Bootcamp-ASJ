@@ -12,6 +12,7 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormularioSimpsonsComponent } from './components/formulario-simpsons/formulario-simpsons.component';
 import { HomeComponent } from './components/home/home.component';
+import { PageErrorComponent } from './components/page-error/page-error.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HomeComponent } from './components/home/home.component';
     NavBarComponent,
     FormularioSimpsonsComponent,
     HomeComponent,
+    PageErrorComponent,
   ],
   imports: [
     BrowserModule,

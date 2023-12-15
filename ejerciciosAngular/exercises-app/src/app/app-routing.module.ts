@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { FormularioSimpsonsComponent } from './components/formulario-simpsons/formulario-simpsons.component';
+import { PageErrorComponent } from './components/page-error/page-error.component';
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent},
-  {path:'', pathMatch:'full', redirectTo:'home'},
-  {path:'toDoList', component:ToDoListComponent},
-  {path:'formularioLosSimpsons', component:FormularioSimpsonsComponent}
+  {path:'', component:HomeComponent},
+  {path:'to-do-list', component:ToDoListComponent},
+  {path:'formulario-los-simpsons', component:FormularioSimpsonsComponent},
+  {path:'**', component: PageErrorComponent}
 ];
 
 @NgModule({

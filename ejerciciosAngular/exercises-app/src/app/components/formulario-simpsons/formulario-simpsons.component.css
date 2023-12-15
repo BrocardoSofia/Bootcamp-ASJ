@@ -3,6 +3,18 @@ h2{
     text-align: center;
 }
 
-img, .tdImg{
+.tdImg{
     width: 15vw;
+} 
+
+.imgContenedor{
+    width: 15vw;
+    height: 15vw;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+img{
+    width: 15vw;
+    object-fit:cover
 }

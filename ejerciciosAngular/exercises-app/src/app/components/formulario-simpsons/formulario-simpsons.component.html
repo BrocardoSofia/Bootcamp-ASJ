@@ -26,7 +26,10 @@
             </thead>
             <tbody>
               <tr *ngFor = "let character of characterArray">
-                <td class="tdImg"><img src="{{character.imgSrc}}" alt="imagen del personaje"></td>
+                <td class="tdImg">
+                  <div class="imgContenedor">
+                    <img src="{{character.imgSrc}}" alt="imagen del personaje">
+                  </div></td>
                 <td>{{character.name}}</td>
                 <td>{{character.rol}}</td>
               </tr>

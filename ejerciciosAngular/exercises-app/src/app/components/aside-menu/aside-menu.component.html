@@ -3,13 +3,13 @@
       <span class="material-symbols-outlined p-2">
         menu
       </span>
-      <span class="fs-4 m-2">MENU</span>
+      <span class="fs-4 m-2">Mis proyectos</span>
     </span>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a routerLink="/toDoList" class="nav-link d-flex align-items-center"
-        [ngClass]="(selectedPath('/toDoList')?'active':'text-white')">
+        <a [routerLink]="['/to-do-list']" class="nav-link d-flex align-items-center"
+        [ngClass]="(selectedPath('/to-do-list')?'active':'text-white')">
           <span class="material-symbols-outlined me-2">
             event_list
           </span>
@@ -20,8 +20,8 @@
       </li>
 
       <li class="nav-item">
-        <a routerLink="/formularioLosSimpsons" class="nav-link d-flex align-items-center text-white"
-        [ngClass]="(selectedPath('/formularioLosSimpsons')?'active':'text-white')">
+        <a routerLink="/formulario-los-simpsons" class="nav-link d-flex align-items-center text-white"
+        [ngClass]="(selectedPath('/formulario-los-simpsons')?'active':'text-white')">
           <span class="material-symbols-outlined me-2">
             view_list
           </span>
