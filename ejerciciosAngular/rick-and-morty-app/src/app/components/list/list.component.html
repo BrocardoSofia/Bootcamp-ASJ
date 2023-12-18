@@ -1,0 +1,17 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let character of apiData.results">
+        <th>{{character.id}}</th>
+        <td>{{character.name}}</td>
+        <td><button type="button" class="btn btn-primary" [routerLink]="['details/', character.id]">
+            Ver personaje</button></td>
+      </tr>
+    </tbody>
+</table>
