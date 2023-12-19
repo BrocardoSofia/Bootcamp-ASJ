@@ -14,6 +14,7 @@ import { FormularioSimpsonsComponent } from './components/formulario-simpsons/fo
 import { HomeComponent } from './components/home/home.component';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
