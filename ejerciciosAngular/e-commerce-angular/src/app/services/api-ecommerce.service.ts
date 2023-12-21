@@ -1,14 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, retry } from 'rxjs';
-import { Product } from '../models/product';
+import { Observable } from 'rxjs';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiEcommerceService{
   private URL_API = 'https://api.escuelajs.co/api/v1/';
-  private products!: Observable<Product[]>;
 
   constructor(private http:HttpClient) { }
 
@@ -16,9 +15,12 @@ export class ApiEcommerceService{
     return this.http.get(this.URL_API + "categories");
   }
 
-  public getAllProducts():Observable<Product[]>{
-    this.products = this.http.get<Product[]>(this.URL_API+'products');
-    return this.products;
+  public getProducts(filter:string):Observable<any>{
+    return this.http.get(this.URL_API+filter);// /products&title=algo&price=10&
+  }
+
+  public getAllProducts():Observable<any>{
+    return this.http.get(this.URL_API+'products');
   }
 
   public getProductsByCategory(id: number):Observable<any>{
@@ -50,16 +52,26 @@ export class ApiEcommerceService{
     return cart;
   }
 
+  public countCart(){
+    let cart: number[] = this.getProductsOfCart();
+
+    return cart.length;
+  }
+
   public buyCart(){
     localStorage.removeItem("cart");
   }
 
-  public filterByPrice(priceMin: number, priceMax: number):Observable<any>{
+  public filterByPriceRange(priceMin: number, priceMax: number):Observable<any>{
     return this.http.get(this.URL_API+'products/?price_min='+priceMin+'&price_max='+priceMax);
   }
 
   public filterByTitle(title: string):Observable<any>{
     return this.http.get(this.URL_API+'products/?title='+title);
+  }
+
+  public filterByPrice(price: number):Observable<any>{
+    return this.http.get(this.URL_API+'products/?price='+price);
   }
 
 }

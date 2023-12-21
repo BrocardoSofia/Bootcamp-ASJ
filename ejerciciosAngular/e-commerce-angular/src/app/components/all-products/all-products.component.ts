@@ -13,45 +13,68 @@ export class AllProductsComponent implements OnInit{
   products:Product[] = [];
   minPrice!:number;
   maxPrice!:number;
+  categoryId:number = -1;
   title!:string;
-  filterText:string = '';
+  price!:number;
+  filterText:string = "Mostrando todos los productos";
   noProducts:boolean = false;
+  urlFilter: string = 'products';
 
   constructor(public api_service: ApiEcommerceService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) =>{
+      this.title = params.get('title')!;
+      this.price = params.get('price')!;
       this.minPrice = params.get('min')!;
       this.maxPrice = params.get('max')!;
-      this.title = params.get('title')!;
+      this.categoryId = params.get('idCategory')!;
+      this.filterText = "Mostrando todos los productos"
 
-      if(this.title !== null){
-        this.api_service.filterByTitle(this.title).subscribe(
+      if(this.title !== null || this.price !== null || this.minPrice !== null || this.categoryId !== null){
+        this.urlFilter += '/?';
+
+        if(this.title !== null){
+          this.urlFilter += ('title='+this.title);
+          this.filterText += ' > '+this.title;
+        }
+
+        if(this.price !== null){
+          this.urlFilter += ('&price='+this.price);
+          this.filterText += ' > $'+this.price;
+        }
+
+        if(this.minPrice !== null){
+          this.urlFilter += ('&price_min='+this.minPrice+'&price_max='+this.maxPrice);
+          this.filterText += ' > $'+this.minPrice+' - $'+this.maxPrice;
+        }
+
+        if(this.categoryId !== null){
+          this.urlFilter += ('&categoryId='+this.categoryId);
+        }
+
+        //aca hago el subscribe
+        this.api_service.getProducts(this.urlFilter).subscribe(
           (data)=>{
             this.products = data;
-            this.filterText = ' > '+this.title;
-            this.noProducts = (this.products.length === 0);
-          }
-        )
-      }else if(this.minPrice !== null){
-        this.api_service.filterByPrice(this.minPrice, this.maxPrice).subscribe(
-          (data)=>{
-            this.products = data;
-            this.filterText = ' > de $'+this.minPrice+" a $"+this.maxPrice;
             this.noProducts = (this.products.length === 0);
           }
         )
       }else{
+        
         this.api_service.getAllProducts().subscribe(
           (data)=>{
             this.products = data;
             this.noProducts = (this.products.length === 0);
+            this.filterText = "Mostrando todos los productos";
           }
         )
-        
       }
+
     }) 
   }
+
+
 
   changeImage(event: Event): void {
     const imagen = event.target as HTMLImageElement;

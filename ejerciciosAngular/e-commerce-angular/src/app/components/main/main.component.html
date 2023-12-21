@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<div class="row">
+    <div *ngIf="showAsideFilter()" class="col-md-2">
+        <app-aside-filter></app-aside-filter>
+    </div>
+    <div [ngClass]="showAsideFilter()?'col-md-10':'col-md-12'">
+        <router-outlet></router-outlet>
+    </div>
+</div>

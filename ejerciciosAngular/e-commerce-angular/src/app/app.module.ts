@@ -7,7 +7,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainComponent } from './components/main/main.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { DetailProductComponent } from './components/detail-product/detail-product.component';
-import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiEcommerceService } from './services/api-ecommerce.service';
@@ -22,7 +21,6 @@ import { FormsModule } from '@angular/forms';
     MainComponent,
     AllProductsComponent,
     DetailProductComponent,
-    CategoryProductsComponent,
     CartComponent,
     AsideFilterComponent
   ],

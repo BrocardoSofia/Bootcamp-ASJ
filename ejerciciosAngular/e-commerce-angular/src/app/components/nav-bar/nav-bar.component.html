@@ -4,18 +4,13 @@
             <span class="fs-4">Ecommerce</span>
         </a>
 
-        <ul class="nav nav-pills">
-
-            <li class="nav-item">
-                <a class="nav-link" routerLink="" [ngClass]="activeAll()?'active':''">Todos</a>
-            </li>
-            <li class="nav-item" *ngFor="let category of caregories"> 
-                <a class="nav-link" [routerLink]="['/category/',category.name, category.id]"
-                [ngClass]="activeCategory(category.name, category.id)?'active':''">
-                    {{category.name}}
-                </a>
-            </li>
-            <li class="nav-item "><a class="nav-link " routerLink="cart">Cart</a></li>
-        </ul>
+        <button type="button" class="btn btn-success position-relative" routerLink="cart">
+            Cart
+            <span *ngIf="countCart> 0" class="position-absolute top-0 start-100 
+            translate-middle badge rounded-pill bg-danger">
+              {{countCart}}
+            <span class="visually-hidden">unread messages</span>
+            </span>
+        </button>
     </div>
 </div>
