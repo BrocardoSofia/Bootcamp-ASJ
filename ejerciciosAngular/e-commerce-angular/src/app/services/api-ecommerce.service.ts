@@ -1,21 +1,24 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiEcommerceService {
-  URL_API = 'https://api.escuelajs.co/api/v1/';
+export class ApiEcommerceService{
+  private URL_API = 'https://api.escuelajs.co/api/v1/';
+  private products!: Observable<Product[]>;
 
   constructor(private http:HttpClient) { }
 
   public getCategories():Observable<any>{
-    return this.http.get(this.URL_API+'categories');
+    return this.http.get(this.URL_API + "categories");
   }
 
-  public getAllProducts():Observable<any>{
-    return this.http.get(this.URL_API+'products');
+  public getAllProducts():Observable<Product[]>{
+    this.products = this.http.get<Product[]>(this.URL_API+'products');
+    return this.products;
   }
 
   public getProductsByCategory(id: number):Observable<any>{
@@ -49,6 +52,14 @@ export class ApiEcommerceService {
 
   public buyCart(){
     localStorage.removeItem("cart");
+  }
+
+  public filterByPrice(priceMin: number, priceMax: number):Observable<any>{
+    return this.http.get(this.URL_API+'products/?price_min='+priceMin+'&price_max='+priceMax);
+  }
+
+  public filterByTitle(title: string):Observable<any>{
+    return this.http.get(this.URL_API+'products/?title='+title);
   }
 
 }

@@ -12,6 +12,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiEcommerceService } from './services/api-ecommerce.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AsideFilterComponent } from './components/aside-filter/aside-filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AllProductsComponent,
     DetailProductComponent,
     CategoryProductsComponent,
-    CartComponent
+    CartComponent,
+    AsideFilterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     ApiEcommerceService

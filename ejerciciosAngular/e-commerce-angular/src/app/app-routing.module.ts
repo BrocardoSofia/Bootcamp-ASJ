@@ -10,6 +10,11 @@ const routes: Routes = [
   {path:'cart', component:CartComponent},
   {path:'category/:nameCategory/:idCategory', component:CategoryProductsComponent},
   {path:'product/:nameProduct/:idProduct', component:DetailProductComponent},
+  {path:'filter',
+    children:[
+      {path:'price_range/:min/:max', component:AllProductsComponent},
+      {path:'title/:title', component:AllProductsComponent}
+    ]},
 ];
 
 @NgModule({

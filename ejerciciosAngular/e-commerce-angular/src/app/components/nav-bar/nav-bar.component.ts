@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../models/category';
 import { ApiEcommerceService } from '../../services/api-ecommerce.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +12,7 @@ export class NavBarComponent implements OnInit{
 
   caregories:Category[] = [];
 
-  constructor(public api_service: ApiEcommerceService){}
+  constructor(public api_service: ApiEcommerceService, private route: Router){}
 
   ngOnInit(): void {
     this.api_service.getCategories().subscribe(
@@ -20,6 +21,14 @@ export class NavBarComponent implements OnInit{
         console.log(this.caregories);
       }
     )
+  }
+
+  activeCategory(name: string, id: number){
+    return (this.route.url === `/category/${name}/${id}`);
+  }
+
+  activeAll(){
+    return (this.route.url === `/`);
   }
 
 }

@@ -11,19 +11,20 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class CategoryProductsComponent implements OnInit{
   products:Product[] = [];
   idCategory!: number;
+  nameCategory!: string;
+  noProducts:boolean = false;
 
   constructor(public api_service: ApiEcommerceService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) =>{
       this.idCategory = params.get('idCategory')!;
+      this.nameCategory = params.get('nameCategory')!;
 
       this.api_service.getProductsByCategory(this.idCategory).subscribe(
         (data)=>{
-          console.log("esta es la data");
-          console.log(data);
           this.products = data;
-          
+          this.noProducts = (this.products.length === 0);
         }
       )
     })
