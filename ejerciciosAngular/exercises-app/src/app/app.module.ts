@@ -13,6 +13,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormularioSimpsonsComponent } from './components/formulario-simpsons/formulario-simpsons.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageErrorComponent } from './components/page-error/page-error.component';
+import { PipesExampleComponent } from './components/pipes-example/pipes-example.component';
+import { PrimeNumbersPipe } from './pipes/prime-numbers.pipe';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { PageErrorComponent } from './components/page-error/page-error.component
     FormularioSimpsonsComponent,
     HomeComponent,
     PageErrorComponent,
+    PipesExampleComponent,
+    PrimeNumbersPipe,
   ],
   imports: [
     BrowserModule,

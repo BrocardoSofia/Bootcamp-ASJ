@@ -31,9 +31,7 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule
   ],
-  providers: [
-    ApiEcommerceService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
