@@ -10,8 +10,8 @@ public class Arrays {
 		//ejercicio2();
 		//ejercicio3();
 		//ejercicio4();
-		ejercicio6();
-		
+		//ejercicio6();
+		//ejercicio7();
 		
 		scanner.close();
 	}
@@ -325,5 +325,88 @@ public class Arrays {
 	 * Usa todos los métodos que veas necesarios, piensa que es aquello que se repite o 
 	 * que puede ser mejor tenerlo por separado.
 	*/
+	static public void ejercicio7() {
+		int[][] personas = new int[10][3];
+        Random random = new Random();
+        int hombres = 0, mujeres = 0, hombresTrabajan = 0, mujeresTrabajan = 0;
+        int sueldoHombres = 0, sueldoMujeres = 0;
+        double porcentajeHombres, porcentajeMujeres, porcentajeHombresTrabajan, porcentajeMujeresTrabajan, 
+        		sueldoPromedioHombres, sueldoPromedioMujeres;
+        
+        
+        for (int i = 0; i < 10; i++) {
+            personas[i][0] = random.nextInt(2) + 1;
+            personas[i][1] = random.nextInt(2) + 1;
+            personas[i][2] = 0;
+            if (personas[i][1] == 1) {
+                personas[i][2] = random.nextInt(1401) + 600;
+            }
+            if (personas[i][0] == 1) {
+                hombres++;
+                if (personas[i][1] == 1) {
+                    hombresTrabajan++;
+                    sueldoHombres += personas[i][2];
+                }
+            } else {
+                mujeres++;
+                if (personas[i][1] == 1) {
+                    mujeresTrabajan++;
+                    sueldoMujeres += personas[i][2];
+                }
+            }
+        }
+        
+        porcentajeHombres = (double) hombres / 10 * 100;
+        porcentajeMujeres = (double) mujeres / 10 * 100;
+        porcentajeHombresTrabajan = (double) hombresTrabajan / 10 * 100;
+        porcentajeMujeresTrabajan = (double) mujeresTrabajan / 10 * 100;
+        sueldoPromedioHombres = (double) sueldoHombres / hombresTrabajan;
+        sueldoPromedioMujeres = (double) sueldoMujeres / mujeresTrabajan;
+        
+        
+        System.out.printf("Porcentaje de hombres: %.2f%%\n", porcentajeHombres);
+        System.out.printf("Porcentaje de mujeres: %.2f%%\n", porcentajeMujeres);
+        System.out.printf("Porcentaje de hombres que trabajan: %.2f%%\n", porcentajeHombresTrabajan);
+        System.out.printf("Porcentaje de mujeres que trabajan: %.2f%%\n", porcentajeMujeresTrabajan);
+        System.out.printf("El sueldo promedio de los hombres que trabajan: $%.2f\n", sueldoPromedioHombres);
+        System.out.printf("El sueldo promedio de las mujeres que trabajan: $%.2f\n", sueldoPromedioMujeres);
+	}
 	
+	/*	Ejercicio 8
+	 * Cifrado Cesar
+	 * Crear un programa que codifique el texto ingresado por el usuario, utilizando el cifrado de Cesar. 
+	 * Los carácteres no-alfabéticos no son transformados.
+	 * 
+	 * El Cifrado de Caesar es uno de los métodos de codificación conocidos más antiguos. Es muy simple, 
+	 * sólo se cambian las posiciones del alfabeto. 
+	 * La transformación se denomina ROTn, donde "n" es el valor de cambio de posiciones y ROT significa "ROTAR", 
+	 * porque es un cambio cíclico.
+	 * 
+	 * Por ejemplo, ROT2 significa que "a" se vuelve "c", "b" se vuelve "d" y al final "y" se vuelve "a", y "z" se vuelve "b". 
+	 * La cantidad de transformaciones posibles depende de la longitud del alfabeto. Para Español sólo llega a 27.
+	*/
+	static public void ejercicio8(){
+		String texto;
+		int rot;
+		String resultado;
+		
+		System.out.print("Ingrese el texto a cifrar: ");
+        texto = scanner.nextLine();
+        
+        System.out.print("Ingrese el valor de cambio de posiciones (ROT): ");
+        rot = scanner.nextInt();
+        
+        resultado = "";
+        
+        for (int i = 0; i < texto.length(); i++) {
+            char caracter = texto.charAt(i);
+            if (Character.isLetter(caracter)) {
+                char inicio = Character.isUpperCase(caracter) ? 'A' : 'a';
+                caracter = (char) (((caracter + rot - inicio) % 26) + inicio);
+            }
+            resultado += caracter;
+        }
+        
+        System.out.println("Texto cifrado: " + resultado);
+	}
 }
