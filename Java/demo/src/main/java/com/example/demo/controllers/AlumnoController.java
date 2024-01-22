@@ -45,16 +45,18 @@ public class AlumnoController {
 		int i=0;
 		for(Alumno a: alumnos) {
 			if(a.getId() == id){
-				alumnos.remove(i);
+				alumnos.remove(a);
+				return "Se elimino correctamente el alumno "+id;
 			}
 			i++;
 		}
 		
-		return "Eliminando al alumno " + id;
+		return "No se encontro al alumno " + id;
 	}
 	
 	@PostMapping("/alumnos")
 	public String agregarAlumno(@RequestBody Alumno alumno) {
+		alumno.setId(alumnos.getLast().getId()+1);
 	    alumnos.add(alumno);
 
 	    return "Se agrego correctamente al alumno " + alumno.getId();
@@ -72,4 +74,5 @@ public class AlumnoController {
 	    }
 	    return "No se encontro al alumno " + id;
 	}
+	
 }

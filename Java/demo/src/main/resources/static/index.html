@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Listado de Alumnos</title>
+	    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+	</head>
+	<body>
+	
+	    <h2>Listado de Alumnos</h2>
+	
+	    <table id="tablaAlumnos">
+	        <thead>
+	            <tr>
+					<th>Id</th>
+	                <th>Nombre</th>
+	                <th>Apellido</th>
+	                <th>Nota</th>
+	                <th>Acciones</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- datos de la API -->
+	        </tbody>
+	    </table>
+	
+	    <form id="formulario">
+	        <h3 id="tituloForm">Agregar Nuevo Alumno</h3>
+	        <label for="nombre">Nombre:</label>
+	        <input type="text" id="nombre" name="nombre" required>
+		    <br><br>
+	        <label for="apellido">Apellido:</label>
+	        <input type="text" id="apellido" name="apellido" required>
+			<br><br>
+	        <label for="nota">Nota:</label>
+	        <input type="number" id="nota" name="nota" required>
+			<br><br>
+	        <button type="button" onclick="guardarCambiosAlumno()">Guardar Cambios</button>
+	    </form>
+	
+	    <script>
+			let agregando = true;
+			let idEditar = -1;
+			
+	        window.onload = function() {
+	            obtenerDatosAPI();
+	        }
+	
+	        function obtenerDatosAPI() {
+            fetch('/alumnos')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('tablaAlumnos').getElementsByTagName('tbody')[0].innerHTML = "";
+
+                    data.forEach(alumno => {
+                        var table = document.getElementById('tablaAlumnos').getElementsByTagName('tbody')[0];
+                        var row = table.insertRow();
+                        var celdaId = row.insertCell(0);
+                        var celdaNombre = row.insertCell(1);
+                        var celdaApellido = row.insertCell(2);
+                        var celdaNota = row.insertCell(3);
+                        var CeldaAcciones = row.insertCell(4);
+                        var botonEliminar = document.createElement("button");
+                         var editarBtn = document.createElement('button');
+ 
+ 
+                        botonEliminar.innerHTML = "Eliminar";
+                        botonEliminar.addEventListener("click", function () {
+                            eliminarPorId(alumno.id);
+                        });
+
+                        editarBtn.innerHTML = 'Editar';
+                        editarBtn.addEventListener('click', function () {
+                            editarAlumno(alumno.id);
+                        });
+
+                        celdaId.innerHTML = alumno.id;
+                        celdaNombre.innerHTML = alumno.nombre;
+                        celdaApellido.innerHTML = alumno.apellido;
+                        celdaNota.innerHTML = alumno.nota;
+                        CeldaAcciones.appendChild(botonEliminar);
+                        CeldaAcciones.appendChild(editarBtn);
+                    });
+                })
+                .catch(error => console.error('Error al obtener datos de la API:', error));
+        	}
+        	
+        	function editarAlumno(id){
+				fetch('alumnos/'+id,{
+					method: 'GET'
+				}).then(response => response.json()
+				).then(data =>{
+					var titulo = document.getElementById("tituloForm");
+					var nombre = document.getElementById("nombre");
+					var apellido = document.getElementById("apellido");
+					var nota = document.getElementById("nota");
+					
+					titulo.innerHTML = "Editando Alumno";
+					nombre.value = data.nombre;
+					apellido.value = data.apellido;
+					nota.value = data.nota;
+					agregando = false;
+					idEditar = data.id;
+					
+				})		
+			}
+	        
+	        function eliminarPorId(id){
+                fetch('alumnos/'+id,{
+                    method:'DELETE'
+                }).then(response =>{
+                    obtenerDatosAPI();
+                }).catch(error=>console.error('Error al borrar alumno:', error))
+            }
+	
+	        function guardarCambiosAlumno(opcion) {
+	            if(agregando){
+					agregarNuevoAlumno()
+				}else{
+					modificarAlumno();
+				}
+	        }
+	        
+	        function modificarAlumno() {
+
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var nota = document.getElementById('nota').value;
+
+            fetch('/alumnos/'+idEditar, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    apellido: apellido,
+                    nota: nota,
+                    id: idEditar,
+                }),
+            }).then(response =>{
+                agregando = true;
+                idEditar = -1;
+                var titulo = document.getElementById("tituloForm");
+                titulo.innerHTML = "Agregar Nuevo Alumno";
+
+                obtenerDatosAPI();
+                document.getElementById('formulario').reset();
+            }).catch(error => console.error('Error al Editar alumno:', error));
+
+        }
+	        
+	        function agregarNuevoAlumno(){
+				var nombre = document.getElementById('nombre').value;
+	            var apellido = document.getElementById('apellido').value;
+	            var nota = document.getElementById('nota').value;
+	
+	            fetch('/alumnos', {
+	                method: 'POST',
+	                headers: {
+	                    'Content-Type': 'application/json',
+	                },
+	                body: JSON.stringify({
+	                    nombre: nombre,
+	                    apellido: apellido,
+	                    nota: nota,
+	                    id: 0,
+	                }),
+	            })
+	            .then(response => {
+					obtenerDatosAPI();
+	
+	                // Limpiar el formulario
+	                document.getElementById('formulario').reset();
+	            })
+	            .catch(error => console.error('Error al agregar nuevo alumno:', error));
+			}
+	    </script>
+	
+	</body>
+</html>
