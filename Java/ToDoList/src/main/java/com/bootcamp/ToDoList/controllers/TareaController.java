@@ -1,10 +1,12 @@
 package com.bootcamp.ToDoList.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,7 @@ import com.bootcamp.ToDoList.services.TareaService;
 
 @RestController
 @RequestMapping("/tareas") //localhost:8080/tareas
+@CrossOrigin(origins = "http://localhost:4200")
 public class TareaController {
 	@Autowired
 	TareaService tareaService;
@@ -30,28 +33,28 @@ public class TareaController {
 	}
 	
 	@GetMapping()
-	public List<TareaModel> getTareas() {
+	public ResponseEntity<List<TareaModel>> getTareas() {
 		
-		return null;
+		return ResponseEntity.ok(tareaService.obtenerTareas());
 	}
 	
 	@GetMapping("/{id}")
-	public TareaModel getTarea(@PathVariable int id) {
-		return null;
+	public ResponseEntity<Optional<TareaModel>> getTareaById(@PathVariable int id) {
+		return ResponseEntity.ok(tareaService.obtenerTareaPorId(id));
 	}
 	
 	@PostMapping()
-	public String createTareaById(@RequestBody TareaModel tarea) {
-		return null;
+	public ResponseEntity<List<TareaModel>> createTareaById(@RequestBody TareaModel tarea) {
+		return ResponseEntity.ok(tareaService.crearTarea(tarea));
 	}
 	
 	@PutMapping("/{id}")
-	public String updateTarea(@PathVariable int id, @RequestBody TareaModel tarea) {
-		return "";
+	public ResponseEntity<List<TareaModel>> updateTarea(@PathVariable int id, @RequestBody TareaModel tarea) {
+		return ResponseEntity.ok(tareaService.modificarTarea(id, tarea));
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteTarea(@PathVariable int id) {
-		return "";
+	public ResponseEntity<List<TareaModel>> deleteTarea(@PathVariable int id) {
+		return ResponseEntity.ok(tareaService.eliminarTarea(id));
 	}
 }

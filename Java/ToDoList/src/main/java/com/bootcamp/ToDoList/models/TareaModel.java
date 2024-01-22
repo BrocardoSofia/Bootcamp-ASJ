@@ -1,5 +1,7 @@
 package com.bootcamp.ToDoList.models;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,59 +9,64 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tareas")
+@Table(name = "toDoList")
 public class TareaModel {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nombre;
-	private String descripcion;
-	private boolean estado;
+	private String taskName;
+	private Date date;
+	private boolean selected;
+	private boolean deleted;
 	
-	public TareaModel(int id, String nombre, String descripcion, boolean estado) {
+	
+	public TareaModel(int id, String taskName, Date date, boolean selected, boolean deleted) {
 		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.estado = estado;
+		this.taskName = taskName;
+		this.date = date;
+		this.selected = selected;
+		this.deleted = deleted;
 	}
 
 	public TareaModel() {
 		
 	}
 
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-	
-	
-	
 	
 }

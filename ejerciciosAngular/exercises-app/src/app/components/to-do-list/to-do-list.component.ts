@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Task } from '../../models/task';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-to-do-list',
@@ -6,25 +8,48 @@ import { Component } from '@angular/core';
   styleUrl: './to-do-list.component.css'
 })
 
-export class ToDoListComponent {
+export class ToDoListComponent implements OnInit{
   task: string = "";
   taskList: Task[] = [];
   seeTaskType: number = 1;
 
+  constructor(private toDoService: TodoService){}
+
+  ngOnInit(): void {
+    this.toDoService.getTasks().subscribe(tasks => {
+      this.taskList = tasks;
+    });
+  }
+
   addTask(){
     if(this.task !== "")
     {
-      this.taskList.push(new Task(this.task, new Date()));
+      let taskToAdd: Task = {
+        id: 0,
+        taskName: this.task,
+	      date: new Date(),
+	      selected: false,
+        deleted: false
+      }
+
+      this.toDoService.postTask(taskToAdd).subscribe(tasks => {
+        this.taskList = tasks;
+      });
+      //this.taskList.push(taskToAdd);
       this.task = "";
     }
   }
 
   markTask(index: number){
-    this.taskList[index].selected = (this.taskList[index].selected)?false:true;
+    this.toDoService.selectTask(this.taskList[index]).subscribe(tasks => {
+      this.taskList = tasks;
+    });
   }
 
-  deleteTask(index: number){
-    this.taskList[index].deleted=true;
+  deleteTask(id: number){
+    this.toDoService.deleteTask(id).subscribe(tasks => {
+      this.taskList = tasks;
+    });
   }
 
   changeSeeTaskType(option: number){
@@ -52,19 +77,4 @@ export class ToDoListComponent {
     return show;
   }
 
-}
-
-class Task{
-	taskName: string;
-	date: Date;
-	selected: boolean;
-  deleted: boolean;
-
-  constructor(taskName: string, date: Date)
-  {
-    this.taskName = taskName;
-    this.date = date;
-    this.selected = false;
-    this.deleted = false;
-  }
 }

@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 import { PipesExampleComponent } from './components/pipes-example/pipes-example.component';
 import { PrimeNumbersPipe } from './pipes/prime-numbers.pipe';
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PrimeNumbersPipe } from './pipes/prime-numbers.pipe';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
