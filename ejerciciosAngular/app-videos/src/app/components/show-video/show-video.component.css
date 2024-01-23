@@ -1,0 +1,8 @@
+iframe {
+    min-width: 80vw;
+    height: 80vh;
+}
+
+.starButton:hover i {
+    color: rgb(240, 175, 13);
+}

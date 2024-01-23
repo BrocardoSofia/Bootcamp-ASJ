@@ -1,0 +1,42 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let video of listVideos">
+        <div class="card mb-4 box-shadow">
+          <p class="card-title ms-2 mt-2 text-center ">
+            <strong>{{video.titulo}}</strong>
+          </p>
+          <img
+            class="card-img"
+            data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+            alt="Thumbnail [100%x100%]"
+            src={{getThumbnail(video.url)}}
+            data-holder-rendered="true"
+            style="height: 100%; width: 95%; display: block; position: relative; align-self: center;"
+          />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  routerLink="/video"
+                  [queryParams]="{id : video.id}"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  View
+                </button>
+                <button 
+                  type="button"
+                  routerLink="/form"
+                  [queryParams]="{id : video.id}" 
+                  class="btn btn-sm btn-outline-secondary">
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<section class="container mb-5 ">
+  <section *ngIf="video!==null">
+    <h1 class="mt-2">{{video.titulo}}</h1>
+    <iframe class="embed-responsive-item" 
+      [src]="idUrl(video.url) | safeUrlPipe:'https://www.youtube.com/embed/'" 
+      allowfullscreen
+      >
+    </iframe>
+    <p>categoria: {{video.categoria}}</p>
+    <p>descripcion: {{video.descripcion}}</p>
+    <p>vistas: {{video.vistas}}</p>
+    <p>me gustas: {{video.meGusta}}</p>
+    <p>no me gusta: {{video.noMeGusta}}</p>
+    <p>estrellas: {{puntaje()}}</p>
+  
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-success mb-2" 
+      (click)="meGusta(true)" [disabled]="!botonMeGusta">
+      <i *ngIf="(click && !meGustaClicked) || !click" class="bi bi-hand-thumbs-up"></i>
+      <i *ngIf="click && meGustaClicked" class="bi bi-hand-thumbs-up-fill"></i>
+      </button>
+      <button type="button" class="btn btn-danger mb-2" 
+      (click)="meGusta(false)" [disabled]="!botonMeGusta">
+      <i *ngIf="(click && meGustaClicked) || !click" class="bi bi-hand-thumbs-down"></i>
+      <i *ngIf="click && !meGustaClicked" class="bi bi-hand-thumbs-down-fill"></i>
+    </button>
+    </div>
+    <br>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-link starButton" (click)="puntuar(1)" [disabled]="!botonPuntaje">
+        <i *ngIf="(clickEstrella && estrella<1) || !clickEstrella" class="bi bi-star"></i>
+        <i *ngIf="clickEstrella && estrella>=1" class="bi bi-star-fill"></i>
+      </button>
+      <button type="button" class="btn btn-link starButton" (click)="puntuar(2)" [disabled]="!botonPuntaje">
+        <i *ngIf="(clickEstrella && estrella<2) || !clickEstrella" class="bi bi-star"></i>
+        <i *ngIf="clickEstrella && estrella>=2" class="bi bi-star-fill"></i>
+      </button>
+      <button type="button" class="btn btn-link starButton" (click)="puntuar(3)" [disabled]="!botonPuntaje">
+        <i *ngIf="(clickEstrella && estrella<3) || !clickEstrella" class="bi bi-star"></i>
+        <i *ngIf="clickEstrella && estrella>=3" class="bi bi-star-fill"></i>
+      </button>
+      <button type="button" class="btn btn-link starButton" (click)="puntuar(4)" [disabled]="!botonPuntaje">
+        <i *ngIf="(clickEstrella && estrella<4) || !clickEstrella" class="bi bi-star"></i>
+        <i *ngIf="clickEstrella && estrella>=4" class="bi bi-star-fill"></i>
+      </button>
+      <button type="button" class="btn btn-link starButton" (click)="puntuar(5)" [disabled]="!botonPuntaje">
+        <i *ngIf="(clickEstrella && estrella<5) || !clickEstrella" class="bi bi-star"></i>
+        <i *ngIf="clickEstrella && estrella>=5" class="bi bi-star-fill"></i>
+      </button>
+    </div>
+  </section>
+</section>
+
