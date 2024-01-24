@@ -1,19 +1,70 @@
-<section class="container mb-5 ">
+<section class="container mt-3">
   <section *ngIf="video!==null">
-    <h1 class="mt-2">{{video.titulo}}</h1>
-    <iframe class="embed-responsive-item" 
-      [src]="idUrl(video.url) | safeUrlPipe:'https://www.youtube.com/embed/'" 
-      allowfullscreen
-      >
-    </iframe>
-    <p>categoria: {{video.categoria}}</p>
-    <p>descripcion: {{video.descripcion}}</p>
-    <p>vistas: {{video.vistas}}</p>
-    <p>me gustas: {{video.meGusta}}</p>
-    <p>no me gusta: {{video.noMeGusta}}</p>
-    <p>estrellas: {{puntaje()}}</p>
-  
-    <div class="btn-group" role="group">
+
+    <div class="h_iframe">
+      <iframe height="2" width="2" [src]="idUrl(video.url) |  safeUrlPipe:'https://www.youtube.com/embed/'" allowfullscreen>
+      </iframe>
+    </div>
+    <div class="flex-container mt-2">
+      <h1 class="mt-2" style="font-size: 1.2em;">{{video.titulo}}</h1>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-success mb-2 m-auto " (click)="meGusta(true)" [disabled]="!botonMeGusta">
+          <i *ngIf="(click && !meGustaClicked) || !click" class="bi bi-hand-thumbs-up"></i>
+          <i *ngIf="click && meGustaClicked" class="bi bi-hand-thumbs-up-fill"></i>
+          {{video.meGusta}}
+        </button>
+        <button type="button" class="btn btn-danger mb-2 m-auto" (click)="meGusta(false)" [disabled]="!botonMeGusta">
+          <i *ngIf="(click && meGustaClicked) || !click" class="bi bi-hand-thumbs-down"></i>
+          <i *ngIf="click && !meGustaClicked" class="bi bi-hand-thumbs-down-fill"></i>
+          {{video.noMeGusta}}
+        </button>
+      </div>
+    </div>
+    <div class="datos">
+      <div class="flex-container">
+        <span class="badge badge-pill badge-light text-bg-light ">{{video.vistas}} Reproduccion{{(video.vistas>1 || video.vistas<1)? "es" :""}}</span>
+        <div class="flex-container">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-link starButton" (click)="puntuar(1)" [disabled]="!botonPuntaje">
+              <i *ngIf="(clickEstrella && estrella<1) || !clickEstrella" class="bi bi-star"></i>
+              <i *ngIf="clickEstrella && estrella>=1" class="bi bi-star-fill"></i>
+            </button>
+            <button type="button" class="btn btn-link starButton" (click)="puntuar(2)" [disabled]="!botonPuntaje">
+              <i *ngIf="(clickEstrella && estrella<2) || !clickEstrella" class="bi bi-star"></i>
+              <i *ngIf="clickEstrella && estrella>=2" class="bi bi-star-fill"></i>
+            </button>
+            <button type="button" class="btn btn-link starButton" (click)="puntuar(3)" [disabled]="!botonPuntaje">
+              <i *ngIf="(clickEstrella && estrella<3) || !clickEstrella" class="bi bi-star"></i>
+              <i *ngIf="clickEstrella && estrella>=3" class="bi bi-star-fill"></i>
+            </button>
+            <button type="button" class="btn btn-link starButton" (click)="puntuar(4)" [disabled]="!botonPuntaje">
+              <i *ngIf="(clickEstrella && estrella<4) || !clickEstrella" class="bi bi-star"></i>
+              <i *ngIf="clickEstrella && estrella>=4" class="bi bi-star-fill"></i>
+            </button>
+            <button type="button" class="btn btn-link starButton" (click)="puntuar(5)" [disabled]="!botonPuntaje">
+              <i *ngIf="(clickEstrella && estrella<5) || !clickEstrella" class="bi bi-star"></i>
+              <i *ngIf="clickEstrella && estrella>=5" class="bi bi-star-fill"></i>
+            </button>
+          </div>
+          <div style="position:relative;">
+            <span class="badge text-bg-warning">{{puntaje()}} <i class="bi bi-star-fill" ></i></span>
+          </div>
+        </div>
+      </div>
+      
+        <a href="#" class="round-container">{{video.categoria}}</a>
+      
+      <div *ngIf="video.descripcion!==''">
+        <h6>Descripción: </h6>
+        <p>{{video.descripcion}}</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!--
+
+<div class="btn-group" role="group">
       <button type="button" class="btn btn-success mb-2" 
       (click)="meGusta(true)" [disabled]="!botonMeGusta">
       <i *ngIf="(click && !meGustaClicked) || !click" class="bi bi-hand-thumbs-up"></i>
@@ -48,6 +99,4 @@
         <i *ngIf="clickEstrella && estrella>=5" class="bi bi-star-fill"></i>
       </button>
     </div>
-  </section>
-</section>
-
+-->

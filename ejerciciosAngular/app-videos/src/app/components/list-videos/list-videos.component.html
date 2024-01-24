@@ -1,37 +1,62 @@
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-4" *ngFor="let video of listVideos">
-        <div class="card mb-4 box-shadow">
-          <p class="card-title ms-2 mt-2 text-center ">
+      <div class="col">
+        <form class="form-inline my-2">
+          <input class="form-control mr-sm-2 me-2" type="search" placeholder="Buscar" name="search" aria-label="Search" style="max-width:20em;display:inline" [(ngModel)]="busqueda" 
+          (input)="buscar()">
+        </form>
+      </div>
+      <div class="col">
+        
+        <div id="right">
+          <label class="me-2" for="categoria">Categoria</label>
+          <select id="categoria" [(ngModel)]="categoria" 
+          name="categoria" id="categoria" (change)="cambiarCategoria()">
+            <option value="Todas">Todas</option>
+            <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-xl-4" *ngFor="let video of shownVideos">
+        <div class="card mb-4">
+          <p class="card-title ms-2 mt-2 text-start text-truncate" >
             <strong>{{video.titulo}}</strong>
           </p>
+          <p class="card-title ms-2 mt-2 text-center ">{{video.categoria}}</p>
           <img
             class="card-img"
-            data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-            alt="Thumbnail [100%x100%]"
+            alt="Thumbnail{{video.titulo}}"
             src={{getThumbnail(video.url)}}
             data-holder-rendered="true"
             style="height: 100%; width: 95%; display: block; position: relative; align-self: center;"
           />
           <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between ">
               <div class="btn-group">
                 <button
                   type="button"
                   routerLink="/video"
-                  [queryParams]="{id : video.id}"
+                  [queryParams]="{id: video.id}"
                   class="btn btn-sm btn-outline-secondary"
                 >
-                  View
+                  Ver
                 </button>
-                <button 
-                  type="button"
-                  routerLink="/form"
-                  [queryParams]="{id : video.id}" 
-                  class="btn btn-sm btn-outline-secondary">
-                  Edit
-                </button>
+                <button
+                type="button"
+                routerLink="/form"
+                [queryParams]="{id: video.id}"
+                class="btn btn-sm btn-outline-secondary"
+              >
+                Editar
+              </button>
+              </div>
+              <div style="position:relative;">
+                <span class="badge badge-pill badge-light text-bg-light ">{{video.vistas}} Reproduccion{{(video.vistas>1 || video.vistas<1)? "es" :""}}</span>
+                <span class="badge text-bg-warning">{{puntaje(video)}} <i class="bi bi-star-fill" ></i></span>
               </div>
             </div>
           </div>
