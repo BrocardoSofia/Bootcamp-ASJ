@@ -1,11 +1,14 @@
 package com.bootcamp.ToDoList.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bootcamp.ToDoList.models.TareaModel;
 import com.bootcamp.ToDoList.services.TareaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tareas") //localhost:8080/tareas
@@ -43,9 +48,26 @@ public class TareaController {
 		return ResponseEntity.ok(tareaService.obtenerTareaPorId(id));
 	}
 	
+//	@PostMapping()
+//	public ResponseEntity<List<TareaModel>> createTareaById(@RequestBody TareaModel tarea) {
+//		return ResponseEntity.ok(tareaService.crearTarea(tarea));
+//	}
+	
+	//POST
 	@PostMapping()
-	public ResponseEntity<List<TareaModel>> createTareaById(@RequestBody TareaModel tarea) {
-		return ResponseEntity.ok(tareaService.crearTarea(tarea));
+	public ResponseEntity<Object> createTareaById(@Valid @RequestBody TareaModel tarea, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			Map<String, String> errors = new HashMap();
+			
+			bindingResult.getFieldErrors().forEach((error)->{
+				String campo = error.getField();
+				String mensaje = error.getDefaultMessage();
+				
+				errors.put(campo, mensaje);
+			});
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(tareaService.crearTarea(tarea), HttpStatus.OK);
 	}
 	
 	@PutMapping("/{id}")
